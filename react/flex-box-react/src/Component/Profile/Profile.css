@@ -1,0 +1,32 @@
+.profile__image{
+    border-radius: 999px;
+    max-height: 200px;
+    max-width: 200px;
+    margin-inline: auto;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+.profile__info{
+    text-align: center;
+    margin-top: 20px;
+}
+/*when the width is less than  */
+@media (min-width:768px) {
+    .profile{
+        flex-direction: row;
+        align-items: center;
+
+    }
+    .profile__image{
+        border-radius: 999px;
+    }
+    .profile__info{
+        margin-left: 20px;
+        text-align: left;
+    }
+}

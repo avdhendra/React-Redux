@@ -1,0 +1,50 @@
+import React, { useEffect } from "react";
+import {
+  selectPostIds,
+  // getPostsStatus,
+  // getPostsError,
+  useGetPostQuery,
+} from "../Slice/postsSlice";
+import "../../css/postList.css";
+import PostExcerpt from "./PostsExcerpt";
+import { useDispatch, useSelector } from "react-redux";
+
+
+function PostList() {
+const{isLoading,isSuccess,isError,error}=useGetPostQuery()
+
+
+  const orderedPostIds = useSelector(selectPostIds);
+  //const postStatus = useSelector(getPostsStatus);
+  // const error = useSelector(getPostsError);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (postStatus === 'idle') {
+  //     dispatch(fetchPosts());
+  //   }
+  // }, [postStatus, dispatch]);
+
+  //sort the post according to the time
+  let content;
+  if (isLoading) {
+    content = <p>"Loading...."</p>;
+  } else if (isSuccess) {
+    // const orderedPosts = posts
+    //   .slice()
+    //   .sort((a, b) => b.date.localeCompare(a.date));
+//we do the sort thing in slice
+    content = orderedPostIds.map((postId) => 
+      <PostExcerpt key={postId} postId={postId} />
+    );
+  } else if (isError) {
+    content = <p>{error}</p>;
+  }
+  return (
+    <div>
+      <h2>Posts</h2>
+      {content}
+    </div>
+  );
+}
+
+export default PostList;
